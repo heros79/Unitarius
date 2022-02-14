@@ -5,3 +5,26 @@
 Далее второй отвечающий уже посчитав перед собой и зная, что черных должно быть четное кол-во может определить свой цвет,
 Далее третий уже опираясь на ответ второго, уже знает что черных должно быть четное кол-во (если второй ответил белый) и или наоборот если второй ответил черный.
 Максимум умрет только 1 раб (Самый первый отвечающий). Оптимально если 1 рабу повезет, то никто)
+
+Задание 2:
+SELECT COALESCE(a.author, b.author) as author,
+a.birthday,
+b.book
+FROM Taba a
+FULL OUTER JOIN
+Tabb b
+ON a.author = b.author
+
+SELECT c.author, c.birthday, c.book as book FROM (
+  SELECT COALESCE(a.author, b.author) as author,
+a.birthday,
+b.book
+FROM Taba a
+FULL OUTER JOIN
+Tabb b
+ON a.author = b.author) c
+WHERE c.book not like ('Книга 1')
+
+В SQL запросах подсмотрел COALESCE давно не использовал его,
+также не делал сплит Книга 1 и не приводил к int,
+если надо дополнительно могу сделать
